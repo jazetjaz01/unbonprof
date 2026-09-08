@@ -1,5 +1,5 @@
 export const Logo = () => (
-  <span className="text-xl font-semibold" style={{ color: "#FF385C" }}>
-    unbonprof
+  <span className="text-2xl font-bold text-teal-600" >
+    superprof
   </span>
 );
