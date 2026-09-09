@@ -29,19 +29,9 @@ const Navbar = async () => {
               </form>
             </>
           ) : (
-            <>
-              <Button
-                className="hidden sm:inline-flex"
-                variant="outline"
-                nativeButton={false}
-                render={<Link href="/auth/login" />}
-              >
-                Sign In
-              </Button>
-              <Button nativeButton={false} render={<Link href="/auth/sign-up" />}>
-                Get Started
-              </Button>
-            </>
+            <Link href="/auth/login" className="text-sm font-medium hover:underline">
+              Se connecter
+            </Link>
           )}
 
           {/* Mobile Menu */}
