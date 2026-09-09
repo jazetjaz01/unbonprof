@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Pacifico } from "next/font/google";
 
 const pacifico = Pacifico({
@@ -7,7 +8,10 @@ const pacifico = Pacifico({
 });
 
 export const Logo = () => (
-  <span className={`${pacifico.variable} font-(family-name:--font-pacifico) text-2xl text-orange-500`}>
+  <Link
+    href="/"
+    className={`${pacifico.variable} font-(family-name:--font-pacifico) text-2xl text-orange-500`}
+  >
     unbonprof
-  </span>
+  </Link>
 );
