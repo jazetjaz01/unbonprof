@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4 text-center">
-      <h1 className="text-6xl font-bold">Trouvez le bon professeur</h1>
+      <h1 className="text-6xl font-bold">Trouvez le <br/>bon professeur</h1>
 
       <form
         action="/recherche"
