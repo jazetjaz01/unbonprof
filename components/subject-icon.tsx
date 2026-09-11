@@ -17,7 +17,6 @@ import {
   Guitar,
   HandFist,
   Languages,
-  Layout,
   Leaf,
   Mic,
   Music,
@@ -35,7 +34,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-const SUBJECT_ICONS: Record<string, LucideIcon> = {
+const SUBJECT_ICONS: Record<string, LucideIcon | string> = {
   Math: Calculator,
   Anglais: Languages,
   Piano,
@@ -81,7 +80,7 @@ const SUBJECT_ICONS: Record<string, LucideIcon> = {
   Musique: Music,
   "Intelligence artificielle": BrainCircuit,
   "Application mobile": Smartphone,
-  Wordpress: Layout,
+  Wordpress: "/subjects/wordpress.svg",
   Nextjs: Code2,
 };
 
@@ -92,6 +91,13 @@ export function SubjectIcon({
   name: string;
   className?: string;
 }) {
-  const Icon = SUBJECT_ICONS[name] ?? BookOpen;
+  const icon = SUBJECT_ICONS[name] ?? BookOpen;
+
+  if (typeof icon === "string") {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={icon} alt="" className={className} />;
+  }
+
+  const Icon = icon;
   return <Icon className={className} />;
 }
