@@ -59,7 +59,7 @@ const SUBJECT_ICONS: Record<string, LucideIcon | string> = {
   Danse: Music,
   Batterie: Drum,
   Echecs: ChessKnight,
-  Yoga: Flower2,
+  Yoga: "/subjects/yoga.svg",
   "Boxe anglaise": HandFist,
   Coreen: Languages,
   Couture: Scissors,
