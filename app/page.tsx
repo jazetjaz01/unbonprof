@@ -1,7 +1,15 @@
 import { BookOpen, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SubjectsCarousel } from "@/components/subjects-carousel";
+import { createClient } from "@/lib/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const { data: subjects } = await supabase
+    .from("subjects")
+    .select("id, name")
+    .order("name");
+
   return (
     <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 bg-linear-to-t from-red-200 to-white px-4 text-center pt-10 ">
       <h1 className="text-6xl font-bold">Trouvez le <br/>bon professeur</h1>
@@ -26,6 +34,8 @@ export default function Home() {
           <Search className="size-6" />
         </Button>
       </form>
+
+      <SubjectsCarousel subjects={subjects ?? []} />
     </div>
   );
 }
