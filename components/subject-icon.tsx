@@ -68,7 +68,7 @@ const SUBJECT_ICONS: Record<string, LucideIcon | string> = {
   SVT: Leaf,
   Droit: Gavel,
   Musculation: Dumbbell,
-  Football: CircleDot,
+  Football: "/subjects/football.svg",
   Saxophone: Music3,
   Basse: Guitar,
   Violoncelle: Music4,
@@ -81,7 +81,7 @@ const SUBJECT_ICONS: Record<string, LucideIcon | string> = {
   "Intelligence artificielle": BrainCircuit,
   "Application mobile": Smartphone,
   Wordpress: "/subjects/wordpress.svg",
-  Nextjs: Code2,
+  Nextjs: "/subjects/nextjs.svg",
 };
 
 export function SubjectIcon({
