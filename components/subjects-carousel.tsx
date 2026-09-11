@@ -26,18 +26,18 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
     <div className="relative flex w-full max-w-5xl items-center">
       <Button
         type="button"
-        size="icon"
+        size="icon-lg"
         variant="outline"
-        className="absolute -left-4 z-10 rounded-full bg-white shadow-md"
+        className="absolute left-2 z-10 rounded-full bg-white shadow-md"
         onClick={() => scrollBy("left")}
         aria-label="Précédent"
       >
-        <ChevronLeft className="size-4" />
+        <ChevronLeft className="size-6" />
       </Button>
 
       <div
         ref={scrollRef}
-        className="flex w-full snap-x scroll-px-4 gap-6 overflow-x-auto rounded-full bg-red-50/70 px-12 py-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex w-full snap-x scroll-px-4 gap-6 overflow-x-auto rounded-full bg-red-50/70 px-16 py-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {subjects.map((subject) => (
           <a
@@ -53,13 +53,13 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
 
       <Button
         type="button"
-        size="icon"
+        size="icon-lg"
         variant="outline"
-        className="absolute -right-4 z-10 rounded-full bg-white shadow-md"
+        className="absolute right-2 z-10 rounded-full bg-white shadow-md"
         onClick={() => scrollBy("right")}
         aria-label="Suivant"
       >
-        <ChevronRight className="size-4" />
+        <ChevronRight className="size-6" />
       </Button>
     </div>
   );
