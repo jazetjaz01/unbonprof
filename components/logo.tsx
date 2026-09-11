@@ -10,7 +10,7 @@ const pacifico = Pacifico({
 export const Logo = () => (
   <Link
     href="/"
-    className={`${pacifico.variable} font-(family-name:--font-pacifico) text-2xl text-orange-500`}
+    className={`${pacifico.variable} font-(family-name:--font-pacifico) text-2xl text-red-500`}
   >
     unbonprof
   </Link>

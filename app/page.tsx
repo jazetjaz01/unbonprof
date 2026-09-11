@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4 text-center">
+    <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 px-4 text-center border pt-5 border">
       <h1 className="text-6xl font-bold">Trouvez le <br/>bon professeur</h1>
 
       <form
         action="/recherche"
         className="flex w-full max-w-2xl items-center gap-2 rounded-full border bg-background p-2 shadow-sm"
       >
-        <BookOpen className="ml-3 size-5 shrink-0 text-orange-500" />
+        <BookOpen className="ml-3 size-5 shrink-0 text-red-500" />
         <input
           type="text"
           name="q"
@@ -20,7 +20,7 @@ export default function Home() {
         <Button
           type="submit"
           size="lg"
-          className="rounded-full bg-orange-500 px-6 text-white hover:bg-orange-500/90"
+          className="rounded-full bg-red-500 px-6 text-white hover:bg-red-500/90"
         >
           Rechercher
         </Button>
