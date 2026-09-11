@@ -10,6 +10,16 @@ const Navbar = async () => {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  let firstName: string | null = null;
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("full_name")
+      .eq("id", user.id)
+      .single();
+    firstName = profile?.full_name?.split(" ")[0] ?? user.email?.split("@")[0] ?? null;
+  }
+
   return (
     <nav className="h-16  bg-background">
       <div className="mx-auto flex h-full max-w-(--breakpoint-3xl) items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -22,8 +32,8 @@ const Navbar = async () => {
            <NavMenu className="hidden md:block" />
           {user ? (
             <>
-              <span className="hidden text-sm text-muted-foreground sm:inline">
-                {user.email}
+              <span className="hidden text-sm font-semibold sm:inline">
+                {firstName}
               </span>
               <form action={logout}>
                 <Button variant="outline">Se déconnecter</Button>
