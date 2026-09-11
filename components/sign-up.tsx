@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import { signup } from "@/app/auth/actions";
+import { signup, loginWithGoogle } from "@/app/auth/actions";
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 const CardShell = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-1 items-center justify-center px-4 py-16">
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-gradient-to-b from-muted/50 to-card px-8 py-8 shadow-lg/5 dark:from-transparent dark:shadow-xl">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-linear-to-b from-muted/50 to-card px-8 py-8 shadow-lg/5 dark:from-transparent dark:shadow-xl">
       <div
         className="absolute inset-0 -top-px -left-px z-0"
         style={{
@@ -115,10 +115,12 @@ const SignUp = () => {
         Rejoins unbonprof en quelques secondes
       </p>
 
-      <Button type="button" variant="outline" className="mt-8 w-full gap-3">
-        <GoogleLogo />
-        Continuer avec Google
-      </Button>
+      <form action={loginWithGoogle} className="mt-8 w-full">
+        <Button type="submit" variant="outline" className="w-full gap-3">
+          <GoogleLogo />
+          Continuer avec Google
+        </Button>
+      </form>
 
       <div className="my-7 flex w-full items-center justify-center overflow-hidden">
         <Separator />
