@@ -37,7 +37,7 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
 
       <div
         ref={scrollRef}
-        className="flex w-full snap-x scroll-px-4 gap-6 overflow-x-auto rounded-full bg-red-50/70 px-16 py-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="scrollbar-none flex w-full snap-x scroll-px-4 gap-6 overflow-x-auto rounded-full bg-red-50/70 px-16 py-5 mask-[linear-gradient(to_right,transparent,black_56px,black_calc(100%-56px),transparent)] [&::-webkit-scrollbar]:hidden"
       >
         {subjects.map((subject) => (
           <a
