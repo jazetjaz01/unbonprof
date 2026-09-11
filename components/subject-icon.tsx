@@ -54,7 +54,7 @@ const SUBJECT_ICONS: Record<string, LucideIcon | string> = {
   Conduite: Car,
   Dessin: Palette,
   Italien: Languages,
-  Violon: Music2,
+  Violon: "/subjects/violin.svg",
   Chinois: Languages,
   Danse: Music,
   Batterie: Drum,
