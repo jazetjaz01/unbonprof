@@ -11,14 +11,14 @@ export default async function Home() {
     .order("name");
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 bg-linear-to-t from-red-200 to-white px-4 text-center pt-10 ">
+    <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 bg-linear-to-t from-orange-200 to-white px-4 text-center pt-10 ">
       <h1 className="text-6xl font-bold">Trouvez le <br/>bon professeur</h1>
 
       <form
         action="/recherche"
-        className="flex w-full max-w-2xl items-center gap-2 rounded-full border-8 border-red-100 bg-background p-2 shadow-sm"
+        className="flex w-full max-w-2xl items-center gap-2 rounded-full border-8 border-orange-100 bg-background p-2 shadow-sm"
       >
-        <BookOpen className="ml-3 size-5 shrink-0 text-red-500" />
+        <BookOpen className="ml-3 size-5 shrink-0 text-orange-600" />
         <input
           type="text"
           name="q"
@@ -28,7 +28,7 @@ export default async function Home() {
         <Button
           type="submit"
           size="icon-lg"
-          className="size-12 rounded-full bg-red-500 text-white hover:bg-red-500/90"
+          className="size-12 rounded-full bg-orange-600 text-white hover:bg-orange-600/90"
           aria-label="Rechercher"
         >
           <Search className="size-6" />

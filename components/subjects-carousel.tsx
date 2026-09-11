@@ -24,7 +24,7 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
 
   return (
     <div className="relative flex w-full max-w-5xl items-center">
-      <div className="absolute left-0 z-10 flex h-full w-16 items-center justify-start rounded-l-full bg-red-50">
+      <div className="absolute left-0 z-10 flex h-full w-16 items-center justify-start rounded-l-full bg-orange-50">
         <Button
           type="button"
           size="icon-lg"
@@ -39,7 +39,7 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
 
       <div
         ref={scrollRef}
-        className="scrollbar-none flex w-full snap-x scroll-px-16 gap-6 overflow-x-auto rounded-full bg-red-50 px-16 py-5 [&::-webkit-scrollbar]:hidden"
+        className="scrollbar-none flex w-full snap-x scroll-px-16 gap-6 overflow-x-auto rounded-full bg-orange-50 px-16 py-5 [&::-webkit-scrollbar]:hidden"
       >
         {subjects.map((subject) => (
           <a
@@ -53,7 +53,7 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
         ))}
       </div>
 
-      <div className="absolute right-0 z-10 flex h-full w-16 items-center justify-end rounded-r-full bg-red-50">
+      <div className="absolute right-0 z-10 flex h-full w-16 items-center justify-end rounded-r-full bg-orange-50">
         <Button
           type="button"
           size="icon-lg"
