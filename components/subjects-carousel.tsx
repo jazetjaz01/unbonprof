@@ -29,7 +29,7 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
           type="button"
           size="icon-lg"
           variant="outline"
-          className="ml-2 rounded-full bg-white shadow-md"
+          className="ml-2 size-12 rounded-full border-transparent bg-white shadow-md"
           onClick={() => scrollBy("left")}
           aria-label="Précédent"
         >
@@ -58,7 +58,7 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
           type="button"
           size="icon-lg"
           variant="outline"
-          className="mr-2 rounded-full bg-white shadow-md"
+          className="mr-2 size-12 rounded-full border-transparent bg-white shadow-md"
           onClick={() => scrollBy("right")}
           aria-label="Suivant"
         >
