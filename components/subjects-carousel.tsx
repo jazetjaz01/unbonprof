@@ -24,20 +24,22 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
 
   return (
     <div className="relative flex w-full max-w-5xl items-center">
-      <Button
-        type="button"
-        size="icon-lg"
-        variant="outline"
-        className="absolute left-2 z-10 rounded-full bg-white shadow-md"
-        onClick={() => scrollBy("left")}
-        aria-label="Précédent"
-      >
-        <ChevronLeft className="size-6" />
-      </Button>
+      <div className="absolute left-0 z-10 flex h-full w-16 items-center justify-start rounded-l-full bg-red-50">
+        <Button
+          type="button"
+          size="icon-lg"
+          variant="outline"
+          className="ml-2 rounded-full bg-white shadow-md"
+          onClick={() => scrollBy("left")}
+          aria-label="Précédent"
+        >
+          <ChevronLeft className="size-6" />
+        </Button>
+      </div>
 
       <div
         ref={scrollRef}
-        className="scrollbar-none flex w-full snap-x scroll-px-4 gap-6 overflow-x-auto rounded-full bg-red-50/70 px-16 py-5 mask-[linear-gradient(to_right,transparent,black_56px,black_calc(100%-56px),transparent)] [&::-webkit-scrollbar]:hidden"
+        className="scrollbar-none flex w-full snap-x scroll-px-16 gap-6 overflow-x-auto rounded-full bg-red-50 px-16 py-5 [&::-webkit-scrollbar]:hidden"
       >
         {subjects.map((subject) => (
           <a
@@ -51,16 +53,18 @@ export const SubjectsCarousel = ({ subjects }: { subjects: Subject[] }) => {
         ))}
       </div>
 
-      <Button
-        type="button"
-        size="icon-lg"
-        variant="outline"
-        className="absolute right-2 z-10 rounded-full bg-white shadow-md"
-        onClick={() => scrollBy("right")}
-        aria-label="Suivant"
-      >
-        <ChevronRight className="size-6" />
-      </Button>
+      <div className="absolute right-0 z-10 flex h-full w-16 items-center justify-end rounded-r-full bg-red-50">
+        <Button
+          type="button"
+          size="icon-lg"
+          variant="outline"
+          className="mr-2 rounded-full bg-white shadow-md"
+          onClick={() => scrollBy("right")}
+          aria-label="Suivant"
+        >
+          <ChevronRight className="size-6" />
+        </Button>
+      </div>
     </div>
   );
 };
