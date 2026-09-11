@@ -13,7 +13,7 @@ import {
 
 const linkStyle = cn(
   navigationMenuTriggerStyle(),
-  "hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white",
+  "hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white font-semibold ",
 );
 
 export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (

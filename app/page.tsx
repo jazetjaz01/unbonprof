@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -19,10 +19,11 @@ export default function Home() {
         />
         <Button
           type="submit"
-          size="lg"
-          className="rounded-full bg-red-500 px-6 text-white hover:bg-red-500/90"
+          size="icon-lg"
+          className="size-12 rounded-full bg-red-500 text-white hover:bg-red-500/90"
+          aria-label="Rechercher"
         >
-          Rechercher
+          <Search className="size-6" />
         </Button>
       </form>
     </div>
