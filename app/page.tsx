@@ -14,6 +14,11 @@ export default async function Home() {
     <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 bg-linear-to-t from-orange-200 to-white px-4 text-center pt-10 ">
       <h1 className="text-4xl font-bold sm:text-6xl">Trouvez le <br/>bon professeur</h1>
 
+      <p className="text-muted-foreground sm:hidden">
+        En ligne ou en face-à-face, faites votre choix parmi les professeurs
+        particuliers inscrits
+      </p>
+
       <form
         action="/recherche"
         className="flex w-full max-w-2xl items-center gap-2 rounded-full border-8 border-orange-100 bg-background p-2 shadow-sm"
