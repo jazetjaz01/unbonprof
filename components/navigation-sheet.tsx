@@ -26,14 +26,14 @@ export const NavigationSheet = () => {
         <div className="mt-10 flex flex-col items-center gap-6">
           <div className="flex w-full flex-col gap-3">
             <Button
-              className="w-full font-semibold bg-orange-600 text-white hover:bg-orange-600/90"
+              className="w-full font-semibold bg-orange-600 text-white hover:bg-orange-600/90 p-2"
               nativeButton={false}
               render={<Link href="/auth/login" />}
             >
               Connexion
             </Button>
             <Button
-              className="w-full font-semibold bg-gray-200 text-foreground hover:bg-gray-300"
+              className="w-full font-semibold bg-gray-200 text-foreground hover:bg-gray-300 p-2"
               nativeButton={false}
               render={<Link href="/auth/sign-up" />}
             >
@@ -41,7 +41,7 @@ export const NavigationSheet = () => {
             </Button>
           </div>
 
-          <div className="flex flex-col items-center gap-4 text-sm">
+          <div className="flex flex-col items-center gap-4 text-sm mt-5">
             <Link href="#" className="hover:underline">
               Donner des cours
             </Link>
