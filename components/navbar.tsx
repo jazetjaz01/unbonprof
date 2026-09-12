@@ -41,9 +41,11 @@ const Navbar = async () => {
           )}
 
           {/* Mobile Menu */}
-          <div className="md:hidden">
-            <NavigationSheet />
-          </div>
+          {!user && (
+            <div className="md:hidden">
+              <NavigationSheet />
+            </div>
+          )}
         </div>
       </div>
     </nav>
