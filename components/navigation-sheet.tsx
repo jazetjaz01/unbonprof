@@ -23,7 +23,7 @@ export const NavigationSheet = () => {
         {/* <Logo /> */}
         {/* <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" /> */}
 
-        <div className="flex flex-1 flex-col items-center justify-center gap-6">
+        <div className="mt-10 flex flex-col items-center gap-6">
           <div className="flex w-full flex-col gap-3">
             <Button
               className="w-full font-semibold bg-orange-600 text-white hover:bg-orange-600/90"
