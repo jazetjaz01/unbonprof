@@ -33,8 +33,8 @@ const Navbar = async () => {
            <NavMenu className="hidden md:block" />
           {user ? (
             <>
-              <div className="flex items-center gap-2 rounded-full border py-1 pr-1 pl-3">
-                <span className="flex size-7 items-center justify-center rounded-full hover:bg-orange-600 hover:text-white">
+              <div className="flex items-center gap-2 rounded-full border py-1 pr-1 pl-3 hover:bg-orange-600 hover:text-white">
+                <span className="flex size-7 items-center justify-center rounded-full ">
                   <Menu className="size-4" />
                 </span>
                 <span className="flex size-9 items-center justify-center rounded-full bg-orange-600 text-sm font-semibold text-white">
