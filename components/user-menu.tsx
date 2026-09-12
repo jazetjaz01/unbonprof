@@ -43,7 +43,7 @@ export const UserMenu = ({ firstName }: { firstName: string | null }) => {
       </button>
 
       {open && (
-        <div className="absolute top-full right-0 z-20 mt-2 w-56 rounded-lg border bg-popover p-1 text-popover-foreground shadow-md">
+        <div className="absolute top-full right-0 z-20 mt-2 w-56 rounded-lg  bg-popover p-1 text-popover-foreground shadow-md">
           <Link
             href="#"
             className="block rounded-md px-3 py-2 text-sm hover:bg-muted"
