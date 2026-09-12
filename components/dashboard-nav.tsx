@@ -6,7 +6,7 @@ import { cn } from "cn";
 
 const links = [
   { href: "/dashboard", label: "Tableau de bord" },
-  { href: "/dashboard/profil", label: "Mon profil" },
+  { href: "/dashboard/profil", label: "Mon compte" },
   { href: "/dashboard/annonce", label: "Mon annonce" },
   { href: "/dashboard/avis", label: "Avis reçus" },
 ];
