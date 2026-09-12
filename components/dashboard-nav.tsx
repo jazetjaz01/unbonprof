@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "cn";
 
 const links = [
-  { href: "/dashboard", label: "Vue d'ensemble" },
+  { href: "/dashboard", label: "Tableau de bord" },
   { href: "/dashboard/profil", label: "Mon profil" },
   { href: "/dashboard/annonce", label: "Mon annonce" },
   { href: "/dashboard/avis", label: "Avis reçus" },
