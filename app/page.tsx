@@ -28,7 +28,7 @@ export default async function Home() {
           type="text"
           name="q"
           placeholder='Essayez "Piano"'
-          className="h-10 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
+          className="h-10 min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground"
         />
         <Button
           type="submit"
