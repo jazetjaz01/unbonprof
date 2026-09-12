@@ -2,7 +2,6 @@ import { updateProfile } from "@/app/dashboard/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function ProfilPage() {
@@ -16,12 +15,12 @@ export default async function ProfilPage() {
     .single();
 
   return (
-    <Card className="max-w-lg">
-      <CardHeader>
-        <CardTitle>Mon profil</CardTitle>
-        <CardDescription>Ces informations sont utilisées sur unbonprof.</CardDescription>
-      </CardHeader>
-      <CardContent>
+    <div className="max-w-lg">
+      <div className="mb-4">
+        <h1 className="font-heading text-base leading-snug font-medium">Mon profil</h1>
+        <p className="text-sm text-muted-foreground">Ces informations sont utilisées sur unbonprof.</p>
+      </div>
+      <div>
         <form action={updateProfile} className="space-y-4">
           <div className="flex items-center gap-4">
             <span className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-orange-600 text-xl font-semibold text-white">
@@ -81,7 +80,7 @@ export default async function ProfilPage() {
 
           <Button type="submit">Enregistrer</Button>
         </form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
