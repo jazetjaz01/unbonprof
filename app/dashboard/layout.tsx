@@ -15,9 +15,11 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-(--breakpoint-xl) flex-1 flex-col gap-6 px-4 py-8 md:flex-row sm:px-6 lg:px-8">
+    <div className="flex flex-1 flex-col">
       <DashboardNav />
-      <div className="flex-1">{children}</div>
+      <div className="mx-auto w-full max-w-(--breakpoint-xl) flex-1 px-4 py-8 sm:px-6 lg:px-8">
+        {children}
+      </div>
     </div>
   );
 }
