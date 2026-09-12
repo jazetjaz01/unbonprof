@@ -32,8 +32,8 @@ const Navbar = async () => {
            <NavMenu className="hidden md:block" />
           {user ? (
             <>
-              <span className="hidden text-sm font-semibold sm:inline">
-                {firstName}
+              <span className="flex size-9 items-center justify-center rounded-full bg-orange-600 text-sm font-semibold text-white">
+                {firstName?.[0]?.toUpperCase()}
               </span>
               <form action={logout}>
                 <Button variant="outline">Se déconnecter</Button>
