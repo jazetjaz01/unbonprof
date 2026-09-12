@@ -22,15 +22,11 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
       <NavigationMenuItem>
         <NavigationMenuLink className={linkStyle} render={<Link href="#" />}>Aide</NavigationMenuLink>
       </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={linkStyle} render={<Link href="#" />}>Actualité</NavigationMenuLink>
-      </NavigationMenuItem>
+     
       <NavigationMenuItem>
         <NavigationMenuLink className={linkStyle} render={<Link href="#" />}>Donner des cours</NavigationMenuLink>
       </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={linkStyle} render={<Link href="#" />}>Contact</NavigationMenuLink>
-      </NavigationMenuItem>
+     
     </NavigationMenuList>
   </NavigationMenu>
 );
