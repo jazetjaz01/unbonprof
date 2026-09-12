@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
@@ -32,9 +33,12 @@ const Navbar = async () => {
            <NavMenu className="hidden md:block" />
           {user ? (
             <>
-              <span className="flex size-9 items-center justify-center rounded-full bg-orange-600 text-sm font-semibold text-white">
-                {firstName?.[0]?.toUpperCase()}
-              </span>
+              <div className="flex items-center gap-2 rounded-full border py-1 pr-1 pl-3">
+                <Menu className="size-4" />
+                <span className="flex size-9 items-center justify-center rounded-full bg-orange-600 text-sm font-semibold text-white">
+                  {firstName?.[0]?.toUpperCase()}
+                </span>
+              </div>
               <form action={logout}>
                 <Button variant="outline">Se déconnecter</Button>
               </form>
