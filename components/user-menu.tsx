@@ -49,7 +49,7 @@ export const UserMenu = ({ firstName }: { firstName: string | null }) => {
             className="block rounded-md px-3 py-2 text-sm hover:bg-muted font-semibold"
             onClick={() => setOpen(false)}
           >
-            Mon compte
+            Tableau de bord
           </Link>
           <Link
             href="/dashboard/annonce"
