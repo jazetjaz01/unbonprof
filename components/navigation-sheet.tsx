@@ -23,15 +23,16 @@ export const NavigationSheet = () => {
         <Logo />
         {/* <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" /> */}
 
-        <div className="flex flex-1 items-center justify-center gap-3">
+        <div className="flex flex-1 flex-col items-center justify-center gap-3">
           <Button
-            variant="outline"
+            className="w-full bg-orange-600 text-white hover:bg-orange-600/90"
             nativeButton={false}
             render={<Link href="/auth/login" />}
           >
             Connexion
           </Button>
           <Button
+            className="w-full bg-orange-600 text-white hover:bg-orange-600/90"
             nativeButton={false}
             render={<Link href="/auth/sign-up" />}
           >
