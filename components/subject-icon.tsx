@@ -43,7 +43,7 @@ const SUBJECT_ICONS: Record<string, LucideIcon | string> = {
   Chant: Mic,
   "Soutien scolaire": BookOpen,
   Guitare: Guitar,
-  Natation: Waves,
+  Natation: "/subjects/natation.svg",
   "Aide aux devoirs": BookOpen,
   Tennis: "/subjects/tennis.svg",
   Espagnol: Languages,
