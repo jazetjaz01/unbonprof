@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 bg-linear-to-t from-orange-200 to-white px-4 text-center pt-10 ">
-      <h1 className="text-6xl font-bold">Trouvez le <br/>bon professeur</h1>
+      <h1 className="text-4xl font-bold sm:text-6xl">Trouvez le <br/>bon professeur</h1>
 
       <form
         action="/recherche"
