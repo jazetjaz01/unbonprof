@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,24 @@ export const NavigationSheet = () => {
       <SheetContent className="px-6 py-3">
         <Logo />
         <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
+
+        <div className="mt-6 flex flex-col gap-2">
+          <Button
+            variant="outline"
+            className="w-full"
+            nativeButton={false}
+            render={<Link href="/auth/login" />}
+          >
+            Connexion
+          </Button>
+          <Button
+            className="w-full"
+            nativeButton={false}
+            render={<Link href="/auth/sign-up" />}
+          >
+            Inscription
+          </Button>
+        </div>
       </SheetContent>
     </Sheet>
   );

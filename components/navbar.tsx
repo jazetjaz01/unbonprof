@@ -32,7 +32,10 @@ const Navbar = async () => {
           {user ? (
             <UserMenu firstName={firstName} />
           ) : (
-            <Link href="/auth/login" className="text-sm font-semibold hover:underline">
+            <Link
+              href="/auth/login"
+              className="hidden text-sm font-semibold hover:underline sm:inline-flex"
+            >
               Se connecter
             </Link>
           )}
