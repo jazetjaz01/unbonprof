@@ -45,14 +45,14 @@ export const UserMenu = ({ firstName }: { firstName: string | null }) => {
       {open && (
         <div className="absolute top-full right-0 z-20 mt-2 w-56 rounded-lg  bg-popover p-1 text-popover-foreground shadow-md">
           <Link
-            href="#"
+            href="/dashboard"
             className="block rounded-md px-3 py-2 text-sm hover:bg-muted font-semibold"
             onClick={() => setOpen(false)}
           >
             Mon compte
           </Link>
           <Link
-            href="#"
+            href="/dashboard/annonce"
             className="block rounded-md px-3 py-2 text-sm hover:bg-muted font-semibold"
             onClick={() => setOpen(false)}
           >
