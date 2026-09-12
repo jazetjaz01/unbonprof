@@ -9,12 +9,38 @@ export async function updateProfile(formData: FormData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/auth/login");
 
-  const fullName = formData.get("full_name") as string;
+  const firstName = (formData.get("first_name") as string) ?? "";
+  const lastName = (formData.get("last_name") as string) ?? "";
+  const phone = formData.get("phone") as string;
+  const address = formData.get("address") as string;
 
-  await supabase
-    .from("profiles")
-    .update({ full_name: fullName, updated_at: new Date().toISOString() })
-    .eq("id", user.id);
+  const updates: Record<string, unknown> = {
+    first_name: firstName,
+    last_name: lastName,
+    full_name: [firstName, lastName].filter(Boolean).join(" "),
+    phone,
+    address,
+    updated_at: new Date().toISOString(),
+  };
+
+  const avatar = formData.get("avatar") as File | null;
+  if (avatar && avatar.size > 0) {
+    const extension = avatar.name.split(".").pop() ?? "jpg";
+    const path = `${user.id}/avatar.${extension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("avatars")
+      .upload(path, avatar, { upsert: true });
+
+    if (!uploadError) {
+      const { data: { publicUrl } } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(path);
+      updates.avatar_url = `${publicUrl}?t=${Date.now()}`;
+    }
+  }
+
+  await supabase.from("profiles").update(updates).eq("id", user.id);
 
   revalidatePath("/dashboard", "layout");
 }
