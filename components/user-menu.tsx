@@ -53,7 +53,7 @@ export const UserMenu = ({ firstName }: { firstName: string | null }) => {
           </Link>
           <Link
             href="#"
-            className="block rounded-md px-3 py-2 text-sm hover:bg-muted"
+            className="block rounded-md px-3 py-2 text-sm hover:bg-muted font-semibold"
             onClick={() => setOpen(false)}
           >
             Créer une annonce
@@ -61,7 +61,7 @@ export const UserMenu = ({ firstName }: { firstName: string | null }) => {
           <form action={logout}>
             <button
               type="submit"
-              className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
+              className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted font-semibold"
             >
               Se déconnecter
             </button>
