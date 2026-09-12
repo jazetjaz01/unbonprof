@@ -34,7 +34,9 @@ const Navbar = async () => {
           {user ? (
             <>
               <div className="flex items-center gap-2 rounded-full border py-1 pr-1 pl-3">
-                <Menu className="size-4" />
+                <span className="flex size-7 items-center justify-center rounded-full hover:bg-orange-600 hover:text-white">
+                  <Menu className="size-4" />
+                </span>
                 <span className="flex size-9 items-center justify-center rounded-full bg-orange-600 text-sm font-semibold text-white">
                   {firstName?.[0]?.toUpperCase()}
                 </span>
