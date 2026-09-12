@@ -15,7 +15,7 @@ export const DashboardNav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full border-b bg-orange-800">
+    <nav className="w-full border-b bg-slate-200 border">
       <div className="mx-auto flex max-w-(--breakpoint-xl) gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
         {links.map(({ href, label }) => {
           const isActive = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
