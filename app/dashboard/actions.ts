@@ -87,7 +87,19 @@ export async function deletePost(formData: FormData) {
 
   const postId = formData.get("post_id") as string;
 
+  const { data: post } = await supabase
+    .from("posts")
+    .select("image_url")
+    .eq("id", postId)
+    .eq("author_id", user.id)
+    .single();
+
   await supabase.from("posts").delete().eq("id", postId).eq("author_id", user.id);
+
+  if (post?.image_url) {
+    const path = post.image_url.split("/posts/").pop();
+    if (path) await supabase.storage.from("posts").remove([path]);
+  }
 
   revalidatePath("/dashboard");
   revalidatePath("/dashboard/posts");
