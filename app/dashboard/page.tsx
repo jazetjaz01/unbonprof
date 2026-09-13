@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -20,6 +21,16 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
+      <div className="relative h-40 w-full overflow-hidden rounded-xl sm:h-56">
+        <Image
+          src="/dashboard/banniere-profil.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+
       <div>
         <h1 className="text-2xl font-bold">
           Bonjour {profile?.full_name?.split(" ")[0] ?? "👋"}
