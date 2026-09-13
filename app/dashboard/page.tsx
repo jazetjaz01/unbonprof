@@ -32,7 +32,7 @@ export default async function DashboardPage() {
           />
         </div>
 
-        <span className="absolute -bottom-12 left-6 flex size-24 items-center justify-center overflow-hidden rounded-full border-4 border-background bg-orange-600 text-2xl font-semibold text-white">
+        <span className="absolute -bottom-12 left-6 flex size-28 items-center justify-center overflow-hidden rounded-full border-4 border-background bg-orange-600 text-2xl font-semibold text-white">
           {profile?.avatar_url ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
