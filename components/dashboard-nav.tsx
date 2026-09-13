@@ -9,6 +9,7 @@ const links = [
   { href: "/dashboard/profil", label: "Mon compte" },
    { href: "/dashboard/presentation", label: "Ma presentation" },
   { href: "/dashboard/annonce", label: "Mon annonce" },
+   { href: "/dashboard/messages", label: "Messages" },
   { href: "/dashboard/avis", label: "Avis reçus" },
 ];
 
