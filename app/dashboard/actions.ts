@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { POST_MAX_LENGTH } from "@/lib/constants";
 
 export async function updateProfile(formData: FormData) {
   const supabase = await createClient();
@@ -43,6 +44,53 @@ export async function updateProfile(formData: FormData) {
   await supabase.from("profiles").update(updates).eq("id", user.id);
 
   revalidatePath("/dashboard", "layout");
+}
+
+export async function createPost(formData: FormData) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+
+  const content = ((formData.get("content") as string) ?? "").trim().slice(0, POST_MAX_LENGTH);
+  if (!content) return;
+
+  let imageUrl: string | null = null;
+  const image = formData.get("image") as File | null;
+  if (image && image.size > 0) {
+    const extension = image.name.split(".").pop() ?? "jpg";
+    const path = `${user.id}/${Date.now()}.${extension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("posts")
+      .upload(path, image);
+
+    if (!uploadError) {
+      const { data: { publicUrl } } = supabase.storage.from("posts").getPublicUrl(path);
+      imageUrl = publicUrl;
+    }
+  }
+
+  await supabase.from("posts").insert({
+    author_id: user.id,
+    content,
+    image_url: imageUrl,
+  });
+
+  revalidatePath("/dashboard");
+  revalidatePath("/dashboard/posts");
+}
+
+export async function deletePost(formData: FormData) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+
+  const postId = formData.get("post_id") as string;
+
+  await supabase.from("posts").delete().eq("id", postId).eq("author_id", user.id);
+
+  revalidatePath("/dashboard");
+  revalidatePath("/dashboard/posts");
 }
 
 export async function upsertTeacherListing(formData: FormData) {
