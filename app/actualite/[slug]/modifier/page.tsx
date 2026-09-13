@@ -10,9 +10,9 @@ import { createClient } from "@/lib/supabase/server";
 export default async function EditArticlePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
+  const { slug } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -22,8 +22,8 @@ export default async function EditArticlePage({
 
   const { data: article } = await supabase
     .from("articles")
-    .select("id, author_id, title, category, content, image_url")
-    .eq("id", id)
+    .select("id, slug, author_id, title, category, content, image_url")
+    .eq("slug", slug)
     .single();
 
   if (!article) {
@@ -31,7 +31,7 @@ export default async function EditArticlePage({
   }
 
   if (article.author_id !== user.id) {
-    redirect(`/actualite/${id}`);
+    redirect(`/actualite/${slug}`);
   }
 
   return (

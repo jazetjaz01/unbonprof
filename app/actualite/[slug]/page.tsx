@@ -9,19 +9,20 @@ import { createClient } from "@/lib/supabase/server";
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
+  const { slug } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   const { data: article } = await supabase
     .from("articles")
-    .select("id, author_id, title, category, content, image_url, created_at, author:profiles(full_name, avatar_url)")
-    .eq("id", id)
+    .select("id, slug, author_id, title, category, content, image_url, created_at, author:profiles(full_name, avatar_url)")
+    .eq("slug", slug)
     .single()
     .overrideTypes<{
       id: string;
+      slug: string;
       author_id: string;
       title: string;
       category: string;
@@ -87,7 +88,7 @@ export default async function ArticlePage({
           <Button
             variant="outline"
             nativeButton={false}
-            render={<Link href={`/actualite/${article.id}/modifier`} />}
+            render={<Link href={`/actualite/${article.slug}/modifier`} />}
           >
             Modifier
           </Button>

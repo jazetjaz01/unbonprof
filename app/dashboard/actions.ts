@@ -93,6 +93,15 @@ export async function deletePost(formData: FormData) {
   revalidatePath("/dashboard/posts");
 }
 
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export async function createArticle(formData: FormData) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -127,16 +136,31 @@ export async function createArticle(formData: FormData) {
     }
   }
 
+  const base = slugify(title) || "article";
+  let slug = base;
+  let suffix = 2;
+  while (true) {
+    const { data: existing } = await supabase
+      .from("articles")
+      .select("id")
+      .eq("slug", slug)
+      .maybeSingle();
+    if (!existing) break;
+    slug = `${base}-${suffix}`;
+    suffix += 1;
+  }
+
   await supabase.from("articles").insert({
     author_id: user.id,
     title,
     category,
     content,
     image_url: imageUrl,
+    slug,
   });
 
   revalidatePath("/actualite");
-  redirect("/actualite");
+  redirect(`/actualite/${slug}`);
 }
 
 export async function updateArticle(formData: FormData) {
@@ -148,7 +172,7 @@ export async function updateArticle(formData: FormData) {
 
   const { data: article } = await supabase
     .from("articles")
-    .select("author_id")
+    .select("author_id, slug, image_url")
     .eq("id", articleId)
     .single();
   if (article?.author_id !== user.id) redirect("/actualite");
@@ -173,14 +197,19 @@ export async function updateArticle(formData: FormData) {
     if (!uploadError) {
       const { data: { publicUrl } } = supabase.storage.from("articles").getPublicUrl(path);
       updates.image_url = publicUrl;
+
+      if (article.image_url) {
+        const oldPath = article.image_url.split("/articles/").pop();
+        if (oldPath) await supabase.storage.from("articles").remove([oldPath]);
+      }
     }
   }
 
   await supabase.from("articles").update(updates).eq("id", articleId);
 
   revalidatePath("/actualite");
-  revalidatePath(`/actualite/${articleId}`);
-  redirect(`/actualite/${articleId}`);
+  revalidatePath(`/actualite/${article.slug}`);
+  redirect(`/actualite/${article.slug}`);
 }
 
 export async function deleteArticle(formData: FormData) {
@@ -190,7 +219,19 @@ export async function deleteArticle(formData: FormData) {
 
   const articleId = formData.get("article_id") as string;
 
+  const { data: article } = await supabase
+    .from("articles")
+    .select("image_url")
+    .eq("id", articleId)
+    .eq("author_id", user.id)
+    .single();
+
   await supabase.from("articles").delete().eq("id", articleId).eq("author_id", user.id);
+
+  if (article?.image_url) {
+    const path = article.image_url.split("/articles/").pop();
+    if (path) await supabase.storage.from("articles").remove([path]);
+  }
 
   revalidatePath("/actualite");
   redirect("/actualite");

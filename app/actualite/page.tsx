@@ -6,7 +6,7 @@ export default async function ActualitePage() {
 
   const { data: posts } = await supabase
     .from("articles")
-    .select("id, category, title, created_at, image_url, author:profiles(full_name, avatar_url)")
+    .select("id, slug, category, title, created_at, image_url, author:profiles(full_name, avatar_url)")
     .order("created_at", { ascending: false })
     .overrideTypes<BlogPost[]>();
 

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export type BlogPost = {
   id: string;
+  slug: string;
   category: string;
   title: string;
   created_at: string;
@@ -27,7 +28,7 @@ const Blog = ({ posts }: { posts: BlogPost[] }) => {
       ) : (
         <div className="mt-6 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Link href={`/actualite/${post.id}`} key={post.id}>
+            <Link href={`/actualite/${post.slug}`} key={post.id}>
             <Card className="gap-3 bg-muted/30 py-0 shadow-none hover:bg-muted/50">
               <CardHeader className="p-1.5 pb-0">
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
