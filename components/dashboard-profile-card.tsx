@@ -12,7 +12,7 @@ export const DashboardProfileCard = async () => {
     .single();
 
   return (
-    <div className="relative mb-14 overflow-hidden rounded-xl bg-white">
+    <div className="relative mb-14 overflow-hidden rounded-xl bg-white border">
       <div className="relative h-24 w-full">
         <Image
           src="/dashboard/banniere-profil.jpg"
