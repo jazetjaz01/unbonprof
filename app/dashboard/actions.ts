@@ -139,6 +139,63 @@ export async function createArticle(formData: FormData) {
   redirect("/actualite");
 }
 
+export async function updateArticle(formData: FormData) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+
+  const articleId = formData.get("article_id") as string;
+
+  const { data: article } = await supabase
+    .from("articles")
+    .select("author_id")
+    .eq("id", articleId)
+    .single();
+  if (article?.author_id !== user.id) redirect("/actualite");
+
+  const title = (formData.get("title") as string)?.trim();
+  const category = (formData.get("category") as string)?.trim();
+  const content = (formData.get("content") as string)?.trim();
+
+  if (!title || !category || !content) return;
+
+  const updates: Record<string, unknown> = { title, category, content };
+
+  const image = formData.get("image") as File | null;
+  if (image && image.size > 0) {
+    const extension = image.name.split(".").pop() ?? "jpg";
+    const path = `${user.id}/${Date.now()}.${extension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("articles")
+      .upload(path, image);
+
+    if (!uploadError) {
+      const { data: { publicUrl } } = supabase.storage.from("articles").getPublicUrl(path);
+      updates.image_url = publicUrl;
+    }
+  }
+
+  await supabase.from("articles").update(updates).eq("id", articleId);
+
+  revalidatePath("/actualite");
+  revalidatePath(`/actualite/${articleId}`);
+  redirect(`/actualite/${articleId}`);
+}
+
+export async function deleteArticle(formData: FormData) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+
+  const articleId = formData.get("article_id") as string;
+
+  await supabase.from("articles").delete().eq("id", articleId).eq("author_id", user.id);
+
+  revalidatePath("/actualite");
+  redirect("/actualite");
+}
+
 export async function upsertTeacherListing(formData: FormData) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

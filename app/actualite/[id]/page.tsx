@@ -1,6 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { deleteArticle } from "@/app/dashboard/actions";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function ArticlePage({
@@ -10,14 +13,16 @@ export default async function ArticlePage({
 }) {
   const { id } = await params;
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   const { data: article } = await supabase
     .from("articles")
-    .select("id, title, category, content, image_url, created_at, author:profiles(full_name, avatar_url)")
+    .select("id, author_id, title, category, content, image_url, created_at, author:profiles(full_name, avatar_url)")
     .eq("id", id)
     .single()
     .overrideTypes<{
       id: string;
+      author_id: string;
       title: string;
       category: string;
       content: string;
@@ -29,6 +34,8 @@ export default async function ArticlePage({
   if (!article) {
     notFound();
   }
+
+  const isAuthor = user?.id === article.author_id;
 
   return (
     <article className="mx-auto max-w-(--breakpoint-md) px-6 py-16 xl:px-0">
@@ -73,6 +80,24 @@ export default async function ArticlePage({
       <div className="mt-8 whitespace-pre-wrap text-base leading-relaxed">
         {article.content}
       </div>
+
+      {isAuthor && (
+        <div className="mt-8 flex gap-2 border-t pt-6">
+          <Button
+            variant="outline"
+            nativeButton={false}
+            render={<Link href={`/actualite/${article.id}/modifier`} />}
+          >
+            Modifier
+          </Button>
+          <form action={deleteArticle}>
+            <input type="hidden" name="article_id" value={article.id} />
+            <Button type="submit" variant="destructive">
+              Supprimer
+            </Button>
+          </form>
+        </div>
+      )}
     </article>
   );
 }
