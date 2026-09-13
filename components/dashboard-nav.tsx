@@ -12,6 +12,7 @@ const links = [
   { href: "/dashboard/messages", label: "Messages" },
   { href: "/dashboard/avis", label: "Avis reçus" },
   { href: "/dashboard/posts", label: "Mes posts" },
+  { href: "/dashboard/actualite/nouveau", label: "Rédiger un article" },
 ];
 
 const accountLinks = [

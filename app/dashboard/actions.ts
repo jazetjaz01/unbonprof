@@ -93,6 +93,45 @@ export async function deletePost(formData: FormData) {
   revalidatePath("/dashboard/posts");
 }
 
+export async function createArticle(formData: FormData) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
+
+  const title = (formData.get("title") as string)?.trim();
+  const category = (formData.get("category") as string)?.trim();
+  const content = (formData.get("content") as string)?.trim();
+
+  if (!title || !category || !content) return;
+
+  let imageUrl: string | null = null;
+  const image = formData.get("image") as File | null;
+  if (image && image.size > 0) {
+    const extension = image.name.split(".").pop() ?? "jpg";
+    const path = `${user.id}/${Date.now()}.${extension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("articles")
+      .upload(path, image);
+
+    if (!uploadError) {
+      const { data: { publicUrl } } = supabase.storage.from("articles").getPublicUrl(path);
+      imageUrl = publicUrl;
+    }
+  }
+
+  await supabase.from("articles").insert({
+    author_id: user.id,
+    title,
+    category,
+    content,
+    image_url: imageUrl,
+  });
+
+  revalidatePath("/actualite");
+  redirect("/actualite");
+}
+
 export async function upsertTeacherListing(formData: FormData) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
