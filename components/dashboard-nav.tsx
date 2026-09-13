@@ -7,9 +7,9 @@ import { cn } from "cn";
 const links = [
   { href: "/dashboard", label: "Tableau de bord" },
   { href: "/dashboard/profil", label: "Mon compte" },
-   { href: "/dashboard/presentation", label: "Ma presentation" },
+  { href: "/dashboard/presentation", label: "Ma presentation" },
   { href: "/dashboard/annonce", label: "Mon annonce" },
-   { href: "/dashboard/messages", label: "Messages" },
+  { href: "/dashboard/messages", label: "Messages" },
   { href: "/dashboard/avis", label: "Avis reçus" },
 ];
 
@@ -24,44 +24,43 @@ export const DashboardNav = () => {
   const isAccountActive = pathname.startsWith("/dashboard/profil");
 
   return (
-    <nav className="w-full border">
-      <div className="mx-auto flex max-w-(--breakpoint-xl) gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
-        {links.map(({ href, label }) => {
-          const isActive = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
-          return (
+    <nav className="flex flex-col rounded-xl border p-2">
+      {links.map(({ href, label }) => {
+        const isActive = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
+        return (
+          <div key={href}>
             <Link
-              key={href}
               href={href}
               className={cn(
-                "shrink-0 rounded-md px-3 py-2 text-sm font-semibold whitespace-nowrap text-gray-500 hover:text-black",
+                "block rounded-md px-3 py-2 text-sm font-semibold whitespace-nowrap text-gray-500 hover:bg-muted hover:text-black",
                 isActive && "text-black",
               )}
             >
               {label}
             </Link>
-          );
-        })}
-      </div>
 
-      {isAccountActive && (
-        <div className="mx-auto flex max-w-(--breakpoint-xl) gap-1 overflow-x-auto border-t px-4 py-2 sm:px-6 lg:px-8">
-          {accountLinks.map(({ href, label }) => {
-            const isActive = pathname === href;
-            return (
-              <Link
-                key={label}
-                href={href}
-                className={cn(
-                  "shrink-0 rounded-md px-3 py-2 text-sm whitespace-nowrap text-gray-500 hover:text-black",
-                  isActive && "font-semibold text-black",
-                )}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </div>
-      )}
+            {href === "/dashboard/profil" && isAccountActive && (
+              <div className="ml-4 flex flex-col border-l pl-2">
+                {accountLinks.map((accountLink) => {
+                  const isSubActive = pathname === accountLink.href;
+                  return (
+                    <Link
+                      key={accountLink.label}
+                      href={accountLink.href}
+                      className={cn(
+                        "rounded-md px-3 py-1.5 text-sm whitespace-nowrap text-gray-500 hover:bg-muted hover:text-black",
+                        isSubActive && "font-semibold text-black",
+                      )}
+                    >
+                      {accountLink.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </nav>
   );
 };

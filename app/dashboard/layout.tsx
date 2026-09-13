@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { DashboardNav } from "@/components/dashboard-nav";
+import { DashboardProfileCard } from "@/components/dashboard-profile-card";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardLayout({
@@ -15,11 +16,12 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex flex-1 flex-col">
-      <DashboardNav />
-      <div className="mx-auto w-full max-w-(--breakpoint-xl) flex-1 px-4 py-8 sm:px-6 lg:px-8">
-        {children}
-      </div>
+    <div className="mx-auto flex w-full max-w-(--breakpoint-xl) flex-1 flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row lg:px-8">
+      <aside className="w-full shrink-0 md:w-72">
+        <DashboardProfileCard />
+        <DashboardNav />
+      </aside>
+      <main className="min-w-0 flex-1">{children}</main>
     </div>
   );
 }
