@@ -77,9 +77,10 @@ export default async function ArticlePage({
         </span>
       </div>
 
-      <div className="mt-8 whitespace-pre-wrap text-base leading-relaxed">
-        {article.content}
-      </div>
+      <div
+        className="prose prose-sm mt-8 max-w-none sm:prose-base"
+        dangerouslySetInnerHTML={{ __html: article.content }}
+      />
 
       {isAuthor && (
         <div className="mt-8 flex gap-2 border-t pt-6">

@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { createArticle } from "@/app/dashboard/actions";
+import { ArticleEditor } from "@/components/article-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function NewArticlePage() {
@@ -50,8 +50,8 @@ export default async function NewArticlePage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="content">Contenu</Label>
-          <Textarea id="content" name="content" rows={10} required />
+          <Label>Contenu</Label>
+          <ArticleEditor name="content" />
         </div>
 
         <Button type="submit">Publier l&apos;article</Button>
