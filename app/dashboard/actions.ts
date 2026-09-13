@@ -98,6 +98,13 @@ export async function createArticle(formData: FormData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/auth/login");
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+  if (profile?.role !== "admin") redirect("/dashboard");
+
   const title = (formData.get("title") as string)?.trim();
   const category = (formData.get("category") as string)?.trim();
   const content = (formData.get("content") as string)?.trim();

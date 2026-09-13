@@ -27,7 +27,8 @@ const Blog = ({ posts }: { posts: BlogPost[] }) => {
       ) : (
         <div className="mt-6 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Card className="gap-3 bg-muted/30 py-0 shadow-none" key={post.id}>
+            <Link href={`/actualite/${post.id}`} key={post.id}>
+            <Card className="gap-3 bg-muted/30 py-0 shadow-none hover:bg-muted/50">
               <CardHeader className="p-1.5 pb-0">
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
                   {post.image_url && (
@@ -73,12 +74,13 @@ const Blog = ({ posts }: { posts: BlogPost[] }) => {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       )}
 
       <div className="mt-10 text-center">
-        <Link href="/dashboard/actualite/nouveau" className="underline">
+        <Link href="/actualite/nouveau" className="underline">
           Rédiger un article
         </Link>
       </div>

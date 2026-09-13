@@ -1,0 +1,78 @@
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
+import { createClient } from "@/lib/supabase/server";
+
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const supabase = await createClient();
+
+  const { data: article } = await supabase
+    .from("articles")
+    .select("id, title, category, content, image_url, created_at, author:profiles(full_name, avatar_url)")
+    .eq("id", id)
+    .single()
+    .overrideTypes<{
+      id: string;
+      title: string;
+      category: string;
+      content: string;
+      image_url: string | null;
+      created_at: string;
+      author: { full_name: string | null; avatar_url: string | null } | null;
+    }>();
+
+  if (!article) {
+    notFound();
+  }
+
+  return (
+    <article className="mx-auto max-w-(--breakpoint-md) px-6 py-16 xl:px-0">
+      {article.image_url && (
+        <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-xl bg-muted">
+          <Image
+            alt={article.title}
+            src={article.image_url}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
+
+      <Badge variant="secondary">{article.category}</Badge>
+
+      <h1 className="mt-4 text-3xl font-bold tracking-[-0.02em]">{article.title}</h1>
+
+      <div className="mt-6 flex items-center gap-2">
+        <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-orange-600 text-xs font-semibold text-white">
+          {article.author?.avatar_url ? (
+            <Image
+              alt={article.author.full_name ?? ""}
+              className="size-full object-cover"
+              height={32}
+              width={32}
+              src={article.author.avatar_url}
+            />
+          ) : (
+            (article.author?.full_name?.[0]?.toUpperCase() ?? "?")
+          )}
+        </span>
+        <span className="font-medium text-muted-foreground">
+          {article.author?.full_name ?? "Utilisateur"}
+        </span>
+        <span className="text-muted-foreground text-sm">
+          · {new Date(article.created_at).toLocaleDateString("fr-FR")}
+        </span>
+      </div>
+
+      <div className="mt-8 whitespace-pre-wrap text-base leading-relaxed">
+        {article.content}
+      </div>
+    </article>
+  );
+}

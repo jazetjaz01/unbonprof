@@ -12,7 +12,6 @@ const links = [
   { href: "/dashboard/messages", label: "Messages" },
   { href: "/dashboard/avis", label: "Avis reçus" },
   { href: "/dashboard/posts", label: "Mes posts" },
-  { href: "/dashboard/actualite/nouveau", label: "Rédiger un article" },
 ];
 
 const accountLinks = [
@@ -21,13 +20,17 @@ const accountLinks = [
   { href: "#", label: "Mes paiements" },
 ];
 
-export const DashboardNav = () => {
+export const DashboardNav = ({ isAdmin }: { isAdmin: boolean }) => {
   const pathname = usePathname();
   const isAccountActive = pathname.startsWith("/dashboard/profil");
 
+  const allLinks = isAdmin
+    ? [...links, { href: "/actualite/nouveau", label: "Rédiger un article" }]
+    : links;
+
   return (
     <nav className="flex flex-col rounded-xl border p-2 bg-white">
-      {links.map(({ href, label }) => {
+      {allLinks.map(({ href, label }) => {
         const isActive = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
         return (
           <div key={href}>

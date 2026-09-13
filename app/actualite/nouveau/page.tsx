@@ -1,12 +1,31 @@
+import { redirect } from "next/navigation";
 import { createArticle } from "@/app/dashboard/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { createClient } from "@/lib/supabase/server";
 
-export default function NewArticlePage() {
+export default async function NewArticlePage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/auth/login");
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  if (profile?.role !== "admin") {
+    redirect("/dashboard");
+  }
+
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-2xl px-6 py-16 xl:px-0">
       <div className="mb-4">
         <h1 className="font-heading text-base leading-snug font-medium">Rédiger un article</h1>
         <p className="text-sm text-muted-foreground">
