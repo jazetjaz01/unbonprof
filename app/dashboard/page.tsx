@@ -47,9 +47,7 @@ export default async function DashboardPage() {
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold">
-          Bonjour {profile?.full_name?.split(" ")[0] ?? "👋"}
-        </h1>
+        <h1 className="text-2xl font-bold">{profile?.full_name}</h1>
         <p className="text-muted-foreground">
           Voici un aperçu de ton compte unbonprof.
         </p>
