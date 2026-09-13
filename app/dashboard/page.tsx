@@ -9,7 +9,7 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, email, created_at")
+    .select("full_name, email, created_at, avatar_url")
     .eq("id", user!.id)
     .single();
 
@@ -21,14 +21,29 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="relative h-40 w-full overflow-hidden rounded-xl sm:h-56">
-        <Image
-          src="/dashboard/banniere-profil.jpg"
-          alt=""
-          fill
-          className="object-cover"
-          priority
-        />
+      <div className="relative mb-14">
+        <div className="relative h-40 w-full overflow-hidden rounded-xl sm:h-56">
+          <Image
+            src="/dashboard/banniere-profil.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <span className="absolute -bottom-12 left-6 flex size-24 items-center justify-center overflow-hidden rounded-full border-4 border-background bg-orange-600 text-2xl font-semibold text-white">
+          {profile?.avatar_url ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={profile.avatar_url}
+              alt="Photo de profil"
+              className="size-full object-cover"
+            />
+          ) : (
+            (profile?.full_name?.[0]?.toUpperCase() ?? "?")
+          )}
+        </span>
       </div>
 
       <div>
