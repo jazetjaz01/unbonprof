@@ -24,7 +24,7 @@ export const DashboardNav = () => {
   const isAccountActive = pathname.startsWith("/dashboard/profil");
 
   return (
-    <nav className="flex flex-col rounded-xl border p-2">
+    <nav className="flex flex-col rounded-xl border p-2 bg-white">
       {links.map(({ href, label }) => {
         const isActive = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
         return (
