@@ -11,6 +11,7 @@ const links = [
   { href: "/dashboard/annonce", label: "Mon annonce" },
   { href: "/dashboard/messages", label: "Messages" },
   { href: "/dashboard/avis", label: "Avis reçus" },
+  { href: "/dashboard/posts", label: "Mes posts" },
 ];
 
 const accountLinks = [
