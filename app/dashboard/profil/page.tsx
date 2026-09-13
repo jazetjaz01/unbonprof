@@ -15,7 +15,7 @@ export default async function ProfilPage() {
     .single();
 
   return (
-    <div className="max-w-lg border bg-white p-3 rounded-xl">
+    <div className="max-w-xl border bg-white p-5 rounded-xl">
       <div className="mb-4">
         <h1 className="font-heading text-base leading-snug font-medium">Mon profil</h1>
         <p className="text-sm text-muted-foreground">Ces informations sont utilisées sur unbonprof.</p>
