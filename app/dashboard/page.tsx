@@ -19,7 +19,7 @@ export default async function DashboardPage() {
     .maybeSingle();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-amber-100">
       <div>
         <h1 className="text-2xl font-bold">Tableau de bord</h1>
         <p className="text-muted-foreground">
