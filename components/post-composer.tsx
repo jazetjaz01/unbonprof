@@ -10,9 +10,11 @@ import { POST_MAX_LENGTH } from "@/lib/constants";
 export const PostComposer = ({
   avatarUrl,
   authorInitial,
+  authorName,
 }: {
   avatarUrl: string | null;
   authorInitial: string;
+  authorName: string | null;
 }) => {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState("");
@@ -45,8 +47,11 @@ export const PostComposer = ({
           <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-orange-600 font-semibold text-white">
             {avatar}
           </span>
-          <span className="flex-1 rounded-full border px-4 py-3 text-sm text-muted-foreground hover:bg-muted">
-            Commencer un post
+          <span className="flex flex-1 items-center gap-3">
+            {authorName && <span className="text-sm font-semibold">{authorName}</span>}
+            <span className="flex-1 rounded-full border px-4 py-3 text-sm text-muted-foreground hover:bg-muted">
+              Commencer un post
+            </span>
           </span>
         </button>
       ) : (
@@ -59,9 +64,12 @@ export const PostComposer = ({
           className="space-y-3"
         >
           <div className="flex items-start justify-between">
-            <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-orange-600 font-semibold text-white">
-              {avatar}
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-orange-600 font-semibold text-white">
+                {avatar}
+              </span>
+              {authorName && <span className="text-sm font-semibold">{authorName}</span>}
+            </div>
             <Button type="button" variant="ghost" size="icon-sm" onClick={reset} aria-label="Annuler">
               <X className="size-4" />
             </Button>

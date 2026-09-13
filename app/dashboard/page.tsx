@@ -24,6 +24,7 @@ export default async function DashboardPage() {
       <PostComposer
         avatarUrl={profile?.avatar_url ?? null}
         authorInitial={profile?.full_name?.[0]?.toUpperCase() ?? "?"}
+        authorName={profile?.full_name ?? null}
       />
 
       <div className="space-y-4">
