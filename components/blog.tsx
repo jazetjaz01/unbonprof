@@ -78,12 +78,6 @@ const Blog = ({ posts }: { posts: BlogPost[] }) => {
           ))}
         </div>
       )}
-
-      <div className="mt-10 text-center">
-        <Link href="/actualite/nouveau" className="underline">
-          Rédiger un article
-        </Link>
-      </div>
     </div>
   );
 };
