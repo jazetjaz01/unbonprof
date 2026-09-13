@@ -65,7 +65,7 @@ const footerSections = [
     links: [
       {
         title: "Actualité",
-        href: "/actialite",
+        href: "/actualite",
       },
       {
         title: "Newsletter",
