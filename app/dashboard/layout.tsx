@@ -22,7 +22,7 @@ export default async function DashboardLayout({
     .single();
 
   return (
-    <div className="flex-1 bg-slate-50">
+    <div className="flex-1 bg-linear-to-t from-orange-50 to-white">
       <div className="mx-auto flex w-full max-w-(--breakpoint-xl) flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row lg:px-8">
         <aside className="w-full shrink-0 md:w-52">
           <DashboardProfileCard />
