@@ -50,7 +50,7 @@ export const PostComposer = ({
           <span className="flex flex-1 items-center gap-3">
             {authorName && <span className="text-sm font-semibold">{authorName}</span>}
             <span className="flex-1 rounded-full border px-4 py-3 text-sm text-muted-foreground hover:bg-muted">
-              Commencer un post
+              Commencer un post pour faire connaitre votre actualité 
             </span>
           </span>
         </button>
