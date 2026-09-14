@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Pacifico } from "next/font/google";
+import { Righteous } from "next/font/google";
 
-const pacifico = Pacifico({
-  variable: "--font-pacifico",
+const righteous = Righteous({
+  variable: "--font-righteous",
   subsets: ["latin"],
   weight: "400",
 });
@@ -10,7 +10,7 @@ const pacifico = Pacifico({
 export const Logo = () => (
   <Link
     href="/"
-    className={`${pacifico.variable} font-(family-name:--font-pacifico) text-2xl text-orange-600`}
+    className={`${righteous.variable} font-(family-name:--font-righteous) text-2xl text-orange-600`}
   >
     unbonprof
   </Link>
