@@ -1,7 +1,14 @@
 import { BookOpen, Search } from "lucide-react";
+import { Righteous } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { SubjectsCarousel } from "@/components/subjects-carousel";
 import { createClient } from "@/lib/supabase/server";
+
+const righteous = Righteous({
+  variable: "--font-righteous",
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default async function Home() {
   const supabase = await createClient();
@@ -12,7 +19,12 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-cxenter gap-8 bg-linear-to-t from-orange-50 to-white px-4 text-center pt-10 ">
-      <h1 className="text-4xl font-bold sm:text-6xl">Trouvez le <br/>bon professeur</h1>
+      <h1
+        className={`${righteous.variable} font-(family-name:--font-righteous) text-4xl sm:text-6xl`}
+      >
+        Trouvez le <br />
+        bon professeur
+      </h1>
 
       <p className=" sm:hidden font-semibold">
         En ligne ou en face-à-face, faites votre choix parmi les professeurs
