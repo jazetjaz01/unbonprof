@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Unbonprof - La super communauté des professeurs particuliers",
   description: "Trouvez le bon professeur pour des cours particuliers indivuels ou collectifs. A domicile, chez le professeur, dans une salle dédiée ou même par webcam.",
+  icons: {
+    icon: "/unbonprof.svg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
